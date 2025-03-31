@@ -3,6 +3,7 @@
 import corner
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import matplotlib as mpl
 import numpy as np
 import os
 import pandas as pd
@@ -22,7 +23,8 @@ coupon_codes = [
         'Regulus',
         'Superluminous Supernovae',
         'Circumgalactic Medium',
-        'Lithium Depletion']
+        'Rotationally Induced Mixing',
+        'Lambda CDM']
 
 def plotparams(ax, labelsize=15):
     '''
@@ -50,10 +52,10 @@ def plotparams(ax, labelsize=15):
         ax.spines[axis].set_linewidth(1.5)
     return ax
 
-def get_optimal_fontsize(fig, ax, text, fraction=0.8):
+def get_optimal_fontsize(fig, ax, text):
     bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
     width_inches = bbox.width
-    return 0.8 * width_inches * 144 / len(text)  # 72 points per inch
+    return 1.1*width_inches * 144 / len(text)  # 72 points per inch
 
 def select_ad(equal):
     
@@ -65,7 +67,7 @@ def select_ad(equal):
     fnames = os.listdir(dir_path)
     return os.path.join(dir_path, np.random.choice(fnames))
 
-def promo_plot(samples, **kwargs):
+def promo_plot(samples, ad_path=None, coupon_code=True, code=None, **kwargs):
 
     figure = corner.corner(samples, **kwargs)
 
@@ -79,24 +81,48 @@ def promo_plot(samples, **kwargs):
 
     n = ndim // 2
 
-    equal = np.random.choice([True, False])
+    if ndim % 3 == 0:
+        equal = False
 
-    if equal:
-        axi = axes[0, axes.shape[1]-1].inset_axes(
-            bounds=[-n+1, -n+1, n, n], transform=axes[0, axes.shape[1]-1].transAxes)
+        x0 = -2*ndim/3 + 1
+        y0 = -ndim/3 + 1
+        width = 2*ndim/3
+        height = ndim / 3
     else:
-        axi = axes[0, axes.shape[1]-1].inset_axes(
-            bounds=[-n, -n+2, n+1, n-1], transform=axes[0, axes.shape[1]-1].transAxes)
+        equal = True 
+        n = ndim // 2
+        x0 = -n+1
+        y0 = -n+1
+        width = n
+        height = n
 
+    axi = axes[0, axes.shape[1]-1].inset_axes(
+            bounds=[x0, y0, width, height], transform=axes[0, axes.shape[1]-1].transAxes)
 
-    axi.imshow(mpimg.imread(select_ad(equal)))
+    if ad_path is None:
+        ad_path = select_ad(equal)
+    axi.imshow(mpimg.imread(ad_path))
     axi.axis('off')
-    deal = int(skewnorm.rvs(15, loc=10, scale=3, size=1)[0])
-    text = f'Use code "{np.random.choice(coupon_codes)}" for {deal}% off' + r'$^*$'
-    fontsize = get_optimal_fontsize(figure, axi, text)
-    axi.text(.5, -0.05, text,
-             fontsize=fontsize,
-             ha='center', va='bottom', transform=axi.transAxes)
+
+    if coupon_code:
+        deal = int(skewnorm.rvs(15, loc=10, scale=3, size=1)[0])
+        if code is None:
+            code = np.random.choice(coupon_codes)
+        usetex = mpl.rcParams["text.usetex"]
+        if usetex:
+            text = f'Use code ``{code}" for {deal}\% off' + r'$^*$'
+        else:
+            text = f'Use code "{code}" for {deal}% off' + r'$^*$'
+        fontsize = get_optimal_fontsize(figure, axi, text)
+
+        if ndim % 3 == 0:
+            axi.text(.9, -0.05, text,
+                     fontsize=fontsize,
+                     ha='right', va='bottom', transform=axi.transAxes)
+        else:
+            axi.text(.5, -0.05, text,
+                     fontsize=fontsize,
+                     ha='center', va='bottom', transform=axi.transAxes)
 
     return figure
 
