@@ -11,7 +11,7 @@ pip install promoplot/
 # Usage
 
 ```
-from promoplot import promoplot
+from promoplot import PromoPlot
 
 # Generate fake data
 df = pd.DataFrame(
@@ -25,7 +25,7 @@ kwargs = dict(
         quantiles=[0.5],
         label_kwargs=dict(fontsize=22))
 
-fig = promoplot(df, **kwargs)
+fig = PromoPlot(df, **kwargs)
 ```
 
 Add your own ads! Drop a png or jpeg in the ``ad_images'' folder. Works best for equal-aspect or 2:1 aspect images.
