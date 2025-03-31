@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from promo_plot import promo_plot
+from promoplot import PromoPlot
 
 from matplotlib import rc
 import matplotlib.image as mpimg
@@ -73,7 +73,7 @@ def paper_plots():
             quantiles=[0.5],
             label_kwargs=dict(fontsize=22))
 
-    fig = promo_plot(df, coupon_code=False, ad_path='../ad_images/equal_aspect/duolingo.png', **kwargs)
+    fig = PromoPlot(df, coupon_code=False, ad_path='../ad_images/equal_aspect/duolingo.png', **kwargs)
 
     ndim = df.shape[1]
     axes = np.array(fig.axes)

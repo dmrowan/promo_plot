@@ -1,4 +1,4 @@
-# promo_plot
+# PromoPlot
  Corner plots -- now with ads!
 
 # Installation

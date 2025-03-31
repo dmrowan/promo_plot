@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from promo_plot import promo_plot
+from promoplot import PromoPlot
 
 from matplotlib import rc
 rc('text', usetex=True)
@@ -43,7 +43,7 @@ def paper_plots():
             quantiles=[0.5],
             label_kwargs=dict(fontsize=22))
 
-    fig = promo_plot(df, code='Kozai-Lidov', **kwargs)
+    fig = PromoPlot(df, code='Kozai-Lidov', **kwargs)
     fig.savefig(f'example_equal.pdf')
 
     size = 10000
@@ -87,7 +87,7 @@ def paper_plots():
 
     kwargs['labels'] = df.columns
 
-    fig = promo_plot(df, code='Polycyclic Aromatic Hydrocarbons', **kwargs)
+    fig = PromoPlot(df, code='Polycyclic Aromatic Hydrocarbons', **kwargs)
     fig.savefig(f'example_wide.pdf')
 
 if __name__ == '__main__':
