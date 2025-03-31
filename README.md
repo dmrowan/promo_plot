@@ -16,7 +16,7 @@ from promo_plot import promo_plot
 # Generate fake data
 df = pd.DataFrame(
     np.random.normal(1, 0.5, size=(1000, 6)),
-    columns=[f'col_{i+1}' for i in range(6)]
+    columns=[f'col{i+1}' for i in range(6)]
 )
 
 kwargs = dict(
