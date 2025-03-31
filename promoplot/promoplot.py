@@ -67,7 +67,7 @@ def select_ad(equal):
     fnames = os.listdir(dir_path)
     return os.path.join(dir_path, np.random.choice(fnames))
 
-def promo_plot(samples, ad_path=None, coupon_code=True, code=None, **kwargs):
+def PromoPlot(samples, ad_path=None, coupon_code=True, code=None, **kwargs):
 
     figure = corner.corner(samples, **kwargs)
 

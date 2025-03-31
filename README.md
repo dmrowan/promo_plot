@@ -5,13 +5,13 @@
 
 via git clone:
 ```
-pip install promo_plot/
+pip install promoplot/
 ```
 
 # Usage
 
 ```
-from promo_plot import promo_plot
+from promoplot import promoplot
 
 # Generate fake data
 df = pd.DataFrame(
@@ -25,7 +25,7 @@ kwargs = dict(
         quantiles=[0.5],
         label_kwargs=dict(fontsize=22))
 
-fig = promo_plot(df, **kwargs)
+fig = promoplot(df, **kwargs)
 ```
 
 Add your own ads! Drop a png or jpeg in the ``ad_images'' folder. Works best for equal-aspect or 2:1 aspect images.
