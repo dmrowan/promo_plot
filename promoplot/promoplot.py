@@ -13,7 +13,7 @@ from scipy.stats import skewnorm
 #Dom Rowan 2025
 
 def get_ad_file(filename):
-    return pkg_resources.resource_filename(__name__, '../ad_images/' + filename)
+    return pkg_resources.resource_filename(__name__, 'ad_images/' + filename)
 
 coupon_codes = [
         'Magnetohydrodynamics',
