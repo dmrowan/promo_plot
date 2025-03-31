@@ -55,7 +55,7 @@ def plotparams(ax, labelsize=15):
 def get_optimal_fontsize(fig, ax, text):
     bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
     width_inches = bbox.width
-    return 1.1*width_inches * 144 / len(text)  # 72 points per inch
+    return 0.8*width_inches * 144 / len(text)  # 72 points per inch
 
 def select_ad(equal):
     
