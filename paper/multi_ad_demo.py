@@ -73,7 +73,7 @@ def paper_plots():
             quantiles=[0.5],
             label_kwargs=dict(fontsize=22))
 
-    fig = PromoPlot(df, coupon_code=False, ad_path='../ad_images/equal_aspect/duolingo.png', **kwargs)
+    fig = PromoPlot(df, coupon_code=False, ad_path='../promoplot/ad_images/equal_aspect/duolingo.png', **kwargs)
 
     ndim = df.shape[1]
     axes = np.array(fig.axes)
@@ -81,37 +81,37 @@ def paper_plots():
 
     axi = axes[0, 1].inset_axes(
         bounds=[0, 0, 2, 1], transform=axes[0, 1].transAxes)
-    axi.imshow(mpimg.imread('../ad_images/wide_aspect/amazon.png'))
+    axi.imshow(mpimg.imread('../promoplot/ad_images/wide_aspect/amazon.png'))
     axi.axis('off')
 
     axi = axes[1, 2].inset_axes(
         bounds=[0, 0, 2, 1], transform=axes[1, 2].transAxes)
-    axi.imshow(mpimg.imread('../ad_images/wide_aspect/draftkings.png'))
+    axi.imshow(mpimg.imread('../promoplot/ad_images/wide_aspect/draftkings.png'))
     axi.axis('off')
 
     axi = axes[0, 3].inset_axes(
         bounds=[0, 0, 1, 1], transform=axes[0, 3].transAxes)
-    axi.imshow(mpimg.imread('../ad_images/equal_aspect/americanexpress.png'))
+    axi.imshow(mpimg.imread('../promoplot/ad_images/equal_aspect/americanexpress.png'))
     axi.axis('off')
 
     axi = axes[2, 3].inset_axes(
         bounds=[0, 0, 1, 1], transform=axes[2, 3].transAxes)
-    axi.imshow(mpimg.imread('../ad_images/equal_aspect/dsc.png'))
+    axi.imshow(mpimg.imread('../promoplot/ad_images/equal_aspect/dsc.png'))
     axi.axis('off')
 
     axi = axes[5, 6].inset_axes(
         bounds=[0, 0, 2, 2], transform=axes[5, 6].transAxes)
-    axi.imshow(mpimg.imread('../ad_images/equal_aspect/hello_fresh.png'))
+    axi.imshow(mpimg.imread('../promoplot/ad_images/equal_aspect/hello_fresh.png'))
     axi.axis('off')
 
     axi = axes[4, 5].inset_axes(
         bounds=[0, 0, 1, 1], transform=axes[4, 5].transAxes)
-    axi.imshow(mpimg.imread('../ad_images/equal_aspect/nordvpn.png'))
+    axi.imshow(mpimg.imread('../promoplot/ad_images/equal_aspect/nordvpn.png'))
     axi.axis('off')
 
     axi = axes[6, 7].inset_axes(
         bounds=[0, 0, 1, 1], transform=axes[6, 7].transAxes)
-    axi.imshow(mpimg.imread('../ad_images/equal_aspect/betterhelp.png'))
+    axi.imshow(mpimg.imread('../promoplot/ad_images/equal_aspect/betterhelp.png'))
     axi.axis('off')
 
 
